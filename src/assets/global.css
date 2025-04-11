@@ -1,0 +1,132 @@
+:root {
+  --primary-color: #0052FF; /* Base blue */
+  --primary-color-rgb: 0, 82, 255; /* RGB values for rgba() functions */
+  --secondary-color: #6366F1;
+  --background-color: #0F0F12;
+  --surface-color: #1F1F24;
+  --text-color: #FFFFFF;
+  --text-secondary-color: #A1A1AA;
+  --border-color: #27272A;
+  --success-color: #10B981;
+  --error-color: #EF4444;
+  --warning-color: #F59E0B;
+  
+  /* Base Chain specific colors */
+  --base-blue: #0052FF;
+  --base-blue-light: #0068FF;
+  --base-blue-dark: #0046DB;
+  --base-blue-bg: rgba(0, 82, 255, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+button {
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  border: none;
+  outline: none;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: var(--base-blue-light);
+}
+
+button:disabled {
+  background-color: var(--border-color);
+  cursor: not-allowed;
+}
+
+input {
+  font-family: 'Inter', sans-serif;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--primary-color);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.card {
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.pixel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16px, 1fr));
+  gap: 1px;
+}
+
+.pixel {
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.1s;
+}
+
+.pixel:hover {
+  transform: scale(1.05); /* Reduced scale for better performance */
+  z-index: 1;
+}
+
+.pixel.owned {
+  border: 1px solid gold;
+}
+
+/* Hover coordinates */
+.pixel {
+  position: relative;
+}
+
+.pixel.show-coords::after {
+  content: attr(data-coords);
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  white-space: nowrap;
+  z-index: 100;
+  pointer-events: none;
+}
